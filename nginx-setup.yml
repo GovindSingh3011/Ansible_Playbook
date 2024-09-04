@@ -4,7 +4,7 @@
   become: true
   tasks:
     - name: Install Nginx
-      apt:
+      yum:
         name: nginx
         state: present
         update_cache: yes

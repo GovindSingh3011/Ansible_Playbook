@@ -9,10 +9,9 @@ This repository contains an Ansible playbook to automate the installation and se
 - An inventory file (`host.ini`) configured with the target hosts.
 
 ## Files in this Repository
- - `apache/AnsibleKey.pem`: Key pair for connect to server.
- - `apache/apache-setup.yml`:Ansible playbook to install and configure Apache.
- - `apache/host.ini`:Inventory file containing the target hosts.
-
+- `key/AnsibleKey.pem`: Key pair for connect to server.
+- `apache/apache-setup.yml`:Ansible playbook to install and configure Apache.
+- `apache/host.ini`:Inventory file containing the target hosts.
 - `nginx/nginx-setup.yml`: Ansible playbook to install and configure Nginx.
 - `nginx/host.ini`: Inventory file containing the target hosts.
 - `nginx/templates/nginx.conf.j2`: Jinja2 template for Nginx configuration.
@@ -45,5 +44,6 @@ cd nginx
 ansible-playbook -i host.ini nginx-setup.yml
 ```
 
-![image](https://github.com/user-attachments/assets/1cea8407-d52d-411d-99a0-f50c5277d382)
+![image](https://github.com/user-attachments/assets/6c508f30-3870-42ab-9bf1-f6274a39c213)
+
 

@@ -1,0 +1,44 @@
+---
+- name: Deploy Website with Ansible
+  hosts: webservers
+  become: yes
+
+  tasks:
+    - name: Update the package index
+      yum:
+        name: "*"
+        state: latest
+
+    - name: Install Apache (httpd)
+      yum:
+        name: httpd
+        state: present
+
+    - name: Start and enable Apache (httpd) service
+      service:
+        name: httpd
+        state: started
+        enabled: yes
+
+    - name: Create a working directory
+      file:
+        path: /var/www/html
+        state: directory
+
+    - name: Copy website files
+      copy:
+        src: /home/govindrawat/ansible_project/website/websitefiles/
+        dest: /var/www/html
+
+    - name: Set permissions
+      file:
+        path: /var/www/mywebsite
+        state: directory
+        recurse: yes
+        mode: "755"
+
+    - name: Restart web server
+      service:
+        name: httpd
+        state: restarted
+

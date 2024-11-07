@@ -1,0 +1,33 @@
+---
+- name: Install Apache on EC2 Amazon Linux
+  hosts: webservers  # Specify your inventory group or individual EC2 hosts
+  become: yes        # Use sudo to run commands
+  vars:
+    httpd_service: "httpd"
+
+  tasks:
+    - name: Update the package index
+      yum:
+        name: "*"
+        state: latest
+
+    - name: Install Apache (httpd)
+      yum:
+        name: "{{ httpd_service }}"
+        state: present
+
+    - name: Start and enable Apache (httpd) service
+      service:
+        name: "{{ httpd_service }}"
+        state: started
+        enabled: yes
+
+    - name: Verify Apache is running
+      command: systemctl status {{ httpd_service }}
+      register: apache_status
+      ignore_errors: yes
+
+    - name: Output Apache status
+      debug:
+        msg: "{{ apache_status.stdout }}"
+
